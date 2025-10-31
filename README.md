@@ -26,3 +26,6 @@ in your IDE’s toolbar or run it directly from the terminal:
 ---
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+
+
+© 2025 Hasan Mohamed — Licensed under the Apache License 2.0
