@@ -12,12 +12,6 @@ class TabManager {
     val activeTab: AppTab? get() = _tabs.find { it.id == _activeId.value }
 
     fun open(type: PageType) {
-        val existing = _tabs.find { it.type == type }
-        if (existing != null) {
-            _activeId.value = existing.id
-            return
-        }
-
         val newTab = AppTab(type = type)
         _tabs.add(newTab)
         _activeId.value = newTab.id

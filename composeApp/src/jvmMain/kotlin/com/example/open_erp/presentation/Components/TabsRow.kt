@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.TrendingUp
 import androidx.compose.material.icons.filled.Badge
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Construction
@@ -28,7 +27,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.BlendMode.Companion.Color
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
@@ -113,7 +111,6 @@ fun TabChip(
     }
 }
 
-// ========== WelcomeScreen.kt ==========
 @Composable
 fun WelcomeScreen(manager: TabManager) {
     Box(
@@ -213,7 +210,6 @@ fun QuickCard(page: PageType, onClick: () -> Unit) {
     }
 }
 
-// ========== TabContent.kt ==========
 @Composable
 fun TabContent(tab: AppTab) {
     Box(Modifier.fillMaxSize().padding(24.dp)) {
@@ -237,7 +233,6 @@ fun TabContent(tab: AppTab) {
     }
 }
 
-// ========== Pages - Dashboard.kt ==========
 @Composable
 fun DashboardPage() {
     Column(Modifier.fillMaxSize().padding(28.dp)) {
@@ -318,7 +313,6 @@ fun StatCard(
     }
 }
 
-// ========== Pages - Others.kt ==========
 @Composable
 fun ProductsPage() {
     PlaceholderPage("المنتجات", Icons.Default.Inventory2, AppColors.products)
