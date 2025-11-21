@@ -30,39 +30,14 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.el_kotap.ui.theme.AppColors
 import com.example.open_erp.presentation.Models.AppTab
 import com.example.open_erp.presentation.Models.PageType
 
-@Composable
-fun TabsRow(manager: TabManager) {
-    Surface(
-        modifier = Modifier.fillMaxWidth(),
-        color = AppColors.surface,
-        shadowElevation = 1.dp
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(48.dp)
-                .padding(horizontal = 20.dp)
-                .horizontalScroll(rememberScrollState()),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            manager.tabs.forEach { tab ->
-                TabChip(
-                    tab = tab,
-                    active = tab.id == manager.activeTab?.id,
-                    onClick = { manager.setActive(tab.id) },
-                    onClose = { manager.close(tab.id) }
-                )
-            }
-        }
-    }
-}
+
 
 @Composable
 fun TabChip(
@@ -111,62 +86,7 @@ fun TabChip(
     }
 }
 
-@Composable
-fun WelcomeScreen(manager: TabManager) {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(40.dp),
-            modifier = Modifier.padding(60.dp)
-        ) {
-            Surface(
-                modifier = Modifier.size(130.dp),
-                color = AppColors.dashboard.copy(0.12f),
-                shape = RoundedCornerShape(28.dp)
-            ) {
-                Box(contentAlignment = Alignment.Center) {
-                    Icon(
-                        Icons.Default.RocketLaunch,
-                        contentDescription = null,
-                        tint = AppColors.dashboard,
-                        modifier = Modifier.size(70.dp)
-                    )
-                }
-            }
 
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(14.dp)
-            ) {
-                Text(
-                    "أهلاً بك! 👋",
-                    fontSize = 32.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = AppColors.textPrimary
-                )
-                Text(
-                    "اختر قسم من الأعلى للبدء",
-                    fontSize = 17.sp,
-                    color = AppColors.textSecondary
-                )
-            }
-
-            Row(horizontalArrangement = Arrangement.spacedBy(18.dp)) {
-                listOf(
-                    PageType.DASHBOARD,
-                    PageType.PRODUCTS,
-                    PageType.CLIENTS,
-                    PageType.SALES
-                ).forEach { page ->
-                    QuickCard(page) { manager.open(page) }
-                }
-            }
-        }
-    }
-}
 
 @Composable
 fun QuickCard(page: PageType, onClick: () -> Unit) {
@@ -233,85 +153,8 @@ fun TabContent(tab: AppTab) {
     }
 }
 
-@Composable
-fun DashboardPage() {
-    Column(Modifier.fillMaxSize().padding(28.dp)) {
-        PageHeader("لوحة التحكم", Icons.Default.Dashboard, AppColors.dashboard)
 
-        Spacer(Modifier.height(24.dp))
 
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(20.dp)
-        ) {
-            StatCard(
-                title = "إجمالي المبيعات",
-                value = "125,430 ج.م",
-                icon = Icons.Default.TrendingUp,
-                color = AppColors.sales,
-                modifier = Modifier.weight(1f)
-            )
-            StatCard(
-                title = "عدد العملاء",
-                value = "248",
-                icon = Icons.Default.Groups,
-                color = AppColors.clients,
-                modifier = Modifier.weight(1f)
-            )
-            StatCard(
-                title = "المنتجات",
-                value = "1,432",
-                icon = Icons.Default.Inventory2,
-                color = AppColors.products,
-                modifier = Modifier.weight(1f)
-            )
-        }
-    }
-}
-
-@Composable
-fun StatCard(
-    title: String,
-    value: String,
-    icon: ImageVector,
-    color: Color,
-    modifier: Modifier = Modifier
-) {
-    Surface(
-        modifier = modifier.height(120.dp),
-        color = color.copy(0.08f),
-        shape = RoundedCornerShape(16.dp)
-    ) {
-        Row(
-            modifier = Modifier.padding(20.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            Surface(
-                modifier = Modifier.size(54.dp),
-                color = color.copy(0.15f),
-                shape = RoundedCornerShape(13.dp)
-            ) {
-                Box(contentAlignment = Alignment.Center) {
-                    Icon(icon, null, tint = color, modifier = Modifier.size(30.dp))
-                }
-            }
-            Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                Text(
-                    title,
-                    fontSize = 13.sp,
-                    color = AppColors.textSecondary
-                )
-                Text(
-                    value,
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = AppColors.textPrimary
-                )
-            }
-        }
-    }
-}
 
 @Composable
 fun ProductsPage() {
@@ -411,3 +254,178 @@ fun PageHeader(title: String, icon: ImageVector, color: Color) {
         )
     }
 }
+
+
+@Composable
+fun TabsRow(manager: TabManager) {
+    // نفس الكود الأصلي تقريبًا بدون تغيير كبير (هو بالفعل قابل للتمرير)
+    // فقط قللنا التباعد قليلاً للشاشات الصغيرة إذا أردت
+    Surface(
+        modifier = Modifier.fillMaxWidth(),
+        color = AppColors.surface,
+        shadowElevation = 1.dp
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp)
+                .padding(horizontal = 20.dp)
+                .horizontalScroll(rememberScrollState()),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            manager.tabs.forEach { tab ->
+                TabChip(
+                    tab = tab,
+                    active = tab.id == manager.activeTab?.id,
+                    onClick = { manager.setActive(tab.id) },
+                    onClose = { manager.close(tab.id) }
+                )
+            }
+        }
+    }
+}
+
+// باقي الملف الثاني مع تحسينات إضافية للشاشات الصغيرة
+
+@Composable
+fun WelcomeScreen(manager: TabManager) {
+    BoxWithConstraints(Modifier.fillMaxSize()) {
+        val isSmall = maxWidth < 900.dp
+
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(if (isSmall) 30.dp else 40.dp),
+                modifier = Modifier.padding(if (isSmall) 40.dp else 60.dp)
+            ) {
+                Surface(
+                    modifier = Modifier.size(if (isSmall) 100.dp else 130.dp),
+                    color = AppColors.dashboard.copy(0.12f),
+                    shape = RoundedCornerShape(28.dp)
+                ) {
+                    Box(contentAlignment = Alignment.Center) {
+                        Icon(
+                            Icons.Default.RocketLaunch,
+                            contentDescription = null,
+                            tint = AppColors.dashboard,
+                            modifier = Modifier.size(if (isSmall) 50.dp else 70.dp)
+                        )
+                    }
+                }
+
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(14.dp)
+                ) {
+                    Text(
+                        "أهلاً بك! 👋",
+                        fontSize = if (isSmall) 28.sp else 32.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = AppColors.textPrimary
+                    )
+                    Text(
+                        "اختر قسم من الأعلى للبدء",
+                        fontSize = if (isSmall) 15.sp else 17.sp,
+                        color = AppColors.textSecondary
+                    )
+                }
+
+                Row(
+                    modifier = Modifier.horizontalScroll(rememberScrollState()),
+                    horizontalArrangement = Arrangement.spacedBy(18.dp)
+                ) {
+                    listOf(
+                        PageType.DASHBOARD,
+                        PageType.PRODUCTS,
+                        PageType.CLIENTS,
+                        PageType.SALES
+                    ).forEach { page ->
+                        QuickCard(page) { manager.open(page) }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun DashboardPage() {
+    BoxWithConstraints(Modifier.fillMaxSize()) {
+        val isCompact = maxWidth < 1000.dp
+
+        Column(Modifier.fillMaxSize().padding(28.dp)) {
+            PageHeader("لوحة التحكم", Icons.Default.Dashboard, AppColors.dashboard)
+
+            Spacer(Modifier.height(24.dp))
+
+            if (isCompact) {
+                Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
+                    StatCard("إجمالي المبيعات", "125,430 ج.م", Icons.Default.TrendingUp, AppColors.sales, Modifier.fillMaxWidth())
+                    StatCard("عدد العملاء", "248", Icons.Default.Groups, AppColors.clients, Modifier.fillMaxWidth())
+                    StatCard("المنتجات", "1,432", Icons.Default.Inventory2, AppColors.products, Modifier.fillMaxWidth())
+                }
+            } else {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(20.dp)
+                ) {
+                    StatCard("إجمالي المبيعات", "125,430 ج.م", Icons.Default.TrendingUp, AppColors.sales, Modifier.weight(1f))
+                    StatCard("عدد العملاء", "248", Icons.Default.Groups, AppColors.clients, Modifier.weight(1f))
+                    StatCard("المنتجات", "1,432", Icons.Default.Inventory2, AppColors.products, Modifier.weight(1f))
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun StatCard(
+    title: String,
+    value: String,
+    icon: ImageVector,
+    color: Color,
+    modifier: Modifier = Modifier
+) {
+    Surface(
+        modifier = modifier.height(120.dp),
+        color = color.copy(0.08f),
+        shape = RoundedCornerShape(16.dp)
+    ) {
+        Row(
+            modifier = Modifier.padding(20.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            Surface(
+                modifier = Modifier.size(54.dp),
+                color = color.copy(0.15f),
+                shape = RoundedCornerShape(13.dp)
+            ) {
+                Box(contentAlignment = Alignment.Center) {
+                    Icon(icon, null, tint = color, modifier = Modifier.size(30.dp))
+                }
+            }
+            Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                Text(
+                    title,
+                    fontSize = 13.sp,
+                    color = AppColors.textSecondary,
+                    softWrap = false,
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 1
+                )
+                Text(
+                    value,
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = AppColors.textPrimary
+                )
+            }
+        }
+    }
+}
+

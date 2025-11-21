@@ -24,7 +24,7 @@ import com.example.open_erp.presentation.Components.WelcomeScreen
 fun main() = application {
     Window(
         onCloseRequest = ::exitApplication,
-        title = "نظام إدارة الأعمال - Business Management System",
+        title = "Open ERP",
         state = rememberWindowState(width = 1200.dp, height = 800.dp)
     ) {
         MainApp()
