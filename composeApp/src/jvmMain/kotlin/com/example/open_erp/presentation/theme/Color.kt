@@ -2,20 +2,22 @@ package com.example.el_kotap.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val PrimaryBlue = Color(0xFF1E88E5)     // أزرق إداري واضح (رئيسي)
-val PrimaryGreen = Color(0xFF00C853)    // أخضر نجاح قوي
-val PrimaryOrange = Color(0xFFFFA726)   // برتقالي تحذيري فاقع
-val PrimaryRed = Color(0xFFE53935)      // أحمر أخطاء واضح
-val PrimaryPurple = Color(0xFF8E24AA)   // بنفسجي أنيق للعناصر البارزة
+// ألوان النظام
+object AppColors {
+    val background = Color(0xFFFAFBFC)
+    val surface = Color(0xFFFFFFFF)
+    val textPrimary = Color(0xFF0F172A)
+    val textSecondary = Color(0xFF64748B)
+    val divider = Color(0xFFE2E8F0)
+    val hoverBg = Color(0xFFF1F5F9)
 
-
-val BackgroundLight = Color(0xFFF9FAFB) // خلفية عامة فاتحة جدًا
-val SurfaceLight = Color(0xFFFFFFFF)    // خلفية الكروت والنوافذ
-val DividerGray = Color(0xFFE0E0E0)     // حدود أو خطوط فصل
-val TextDark = Color(0xFF212121)        // نص غامق وواضح
-val TextGray = Color(0xFF757575)        // نصوص ثانوية
-
-val Cyan = Color(0xFF00BCD4)            // أزرق سماوي
-val Lime = Color(0xFFCDDC39)            // أصفر مائل للأخضر
-val Pink = Color(0xFFE91E63)            // وردي قوي
-val DeepIndigo = Color(0xFF3F51B5)      // أزرق غامق رسمي
+    // ألوان الأقسام
+    val dashboard = Color(0xFF3B82F6)      // أزرق حديث
+    val products = Color(0xFFEC4899)       // وردي
+    val clients = Color(0xFF10B981)        // أخضر
+    val suppliers = Color(0xFFF59E0B)      // برتقالي
+    val employees = Color(0xFF8B5CF6)      // بنفسجي
+    val sales = Color(0xFF14B8A6)          // تيركواز
+    val inventory = Color(0xFFEF4444)      // أحمر
+    val settings = Color(0xFF6B7280)       // رمادي
+}
